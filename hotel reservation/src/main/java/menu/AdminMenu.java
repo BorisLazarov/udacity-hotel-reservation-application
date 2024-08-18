@@ -1,7 +1,6 @@
 package menu;
 
 import api.AdminResource;
-import api.HotelResource;
 import model.room.FreeRoom;
 import model.room.Room;
 import model.room.RoomType;

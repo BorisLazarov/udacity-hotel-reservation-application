@@ -12,7 +12,14 @@ public class MainMenu extends Menu<MainMenu.Action> {
 
     final AdminResource adminResource = AdminResource.getInstance();
     final HotelResource hotelResource = HotelResource.getInstance();
+
+    /*
+    I considered adding a subMenus field in the Menu abstract class and accessing it from there
+    the main reason is the line of thinking "what if we need this in the future",
+    but decided to follow the keep it simple for now.
+    */
     final AdminMenu adminMenu = new AdminMenu();
+
 
     public MainMenu() {
         super(List.of(Action.values()));
@@ -69,7 +76,6 @@ public class MainMenu extends Menu<MainMenu.Action> {
             }case ADMIN -> {
                 adminMenu.runMenu();
             }case EXIT -> {
-                return;
             }
         }
     }
