@@ -55,7 +55,7 @@ public class AdminMenu extends Menu<AdminMenu.Action> {
         return a.getValue();
     }
 
-    @Override
+ /*   @Override
     public void runMenu() {
 
         Scanner scanner = new Scanner(System.in);
@@ -81,11 +81,9 @@ public class AdminMenu extends Menu<AdminMenu.Action> {
                 scanner.nextLine(); //This will remove the invalid input from the scanner.
             }
 
-
-
         }while(userInputAction != Action.BACK_TO_MAIN_MENU);
     }
-
+*/
     @Override
     protected void executeAction(Action action) {
         switch (action){

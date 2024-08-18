@@ -14,7 +14,7 @@ public class ScannerInputHandler {
         while (!validInput) {
             try {
                 System.out.println(prompt);
-                result = scanner.nextInt();
+                result = Integer.parseInt(scanner.nextLine());
                 if (validInputValues.isEmpty()) {
                     validInput = true;
                 }else{
@@ -24,9 +24,8 @@ public class ScannerInputHandler {
                         System.out.println("Value must be one of " + validInputValues);
                     }
                 }
-            } catch (InputMismatchException ex) {
+            } catch (InputMismatchException | NumberFormatException ex) {
                 System.out.println("Please enter a valid number.");
-                scanner.nextLine(); // Clear the invalid input from the scanner
             }
         }
         return result;
@@ -43,18 +42,16 @@ public class ScannerInputHandler {
         while (!validInput) {
             try {
                 System.out.println(prompt);
-                result = scanner.nextDouble();
+                result = Double.parseDouble(scanner.nextLine());
                 if (result >= minimumValue){
                     validInput = true;
                 }else{
                     System.out.println("Value cannot be lower than " + minimumValue + ".");
                 }
-            } catch (InputMismatchException ex) {
+            } catch (InputMismatchException | NumberFormatException ex) {
                 System.out.println("Please enter a valid number (double).");
-                scanner.nextLine(); // Clear the invalid input from the scanner
             }
         }
-
         return result;
     }
 
