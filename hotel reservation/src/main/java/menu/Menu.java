@@ -38,7 +38,7 @@ public abstract class Menu<T extends Enum<T>> {
         Scanner scanner = new Scanner(System.in);
         int userIntInput;
         T userInputAction = null;
-        int valueOfLastMenuItem = getIntFromAction(actions.getLast()); //this gives us the int value of the last enum value
+        int valueOfLastMenuItem = getIntFromAction(actions.getLast()); //this gives us the int value of the last enum value, which needs to be the Exit/Return to Main menu entry. Discussed more in the while conditional at the bottom of this method.
         do{
             System.out.println("Please select an option:");
             printMenuActions();
@@ -50,7 +50,6 @@ public abstract class Menu<T extends Enum<T>> {
                     userIntInput = scanner.nextInt();
                 }
                 userInputAction = getActionFromInt(userIntInput);
-                System.out.println("User Input: " + userIntInput);
                 executeAction(userInputAction);
                 System.out.println("--- ---- ---- ---");
             } catch (InputMismatchException e){

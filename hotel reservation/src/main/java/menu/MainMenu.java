@@ -57,36 +57,6 @@ public class MainMenu extends Menu<MainMenu.Action> {
     }
 
 
-/*    @Override
-    public void runMenu() {
-        final AdminMenu adminMenu;
-
-        Scanner scanner = new Scanner(System.in);
-        int userIntInput;
-        Action userInputAction = null;
-        int valueOfLastMenuItem = Action.values()[Action.values().length-1].value;
-        do{
-            System.out.println("Please select an option:");
-            printMenuActions();
-            try{
-                userIntInput = scanner.nextInt();
-                while(! (userIntInput > 0 && userIntInput <= valueOfLastMenuItem) ){
-                    System.out.println("Please select a valid number that corresponds to one of the options below");
-                    printMenuActions();
-                    userIntInput = scanner.nextInt();
-                }
-                userInputAction = Action.fromInt(userIntInput);
-                System.out.println("User Input: " + userIntInput);
-                executeAction(userInputAction);
-                System.out.println("--- ---- ---- ---");
-            } catch (InputMismatchException e){
-                System.out.println("You need to select the number corresponding to the option you want");
-                scanner.nextLine(); //This will remove the invalid input from the scanner.
-            }
-
-        }while(userInputAction != Action.EXIT);
-    }*/
-
     @Override
     protected void executeAction(Action action) {
         switch (action){
