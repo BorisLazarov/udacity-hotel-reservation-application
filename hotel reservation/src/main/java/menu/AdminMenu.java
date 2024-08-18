@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 public class AdminMenu extends Menu<AdminMenu.Action> {
     final AdminResource adminResource = AdminResource.getInstance();
-    final HotelResource hotelResource = HotelResource.getInstance();
     public AdminMenu() {
         super(List.of(Action.values()));
     }
