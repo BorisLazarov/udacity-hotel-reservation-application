@@ -16,7 +16,7 @@ public class CustomerService {
         this.customers = new HashSet<>();
     }
 
-    public CustomerService getInstance(){
+    public static CustomerService getInstance(){
         return reference;
     }
 

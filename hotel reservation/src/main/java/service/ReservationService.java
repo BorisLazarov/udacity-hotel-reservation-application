@@ -20,7 +20,7 @@ public class ReservationService {
         this.rooms = new HashSet<>();
     }
 
-    public ReservationService getInstance(){
+    public static ReservationService getInstance(){
         return reference;
     }
 
@@ -107,6 +107,14 @@ public class ReservationService {
         for (Reservation reservation : reference.reservations){
             System.out.println(reservation.toString());
         }
+    }
+
+    public Collection<IRoom> getAllRooms(){
+        return reference.rooms;
+    }
+
+    public boolean roomNumberAvailable(String roomId){
+        return !reference.rooms.contains(new Room(roomId,0.0,RoomType.SINGLE)); //A bit crude, but does the job
     }
 
 
