@@ -1,6 +1,7 @@
 package menu;
 
 import api.AdminResource;
+import model.customer.Customer;
 import model.room.FreeRoom;
 import model.room.Room;
 import model.room.RoomType;
@@ -20,7 +21,8 @@ public class AdminMenu extends Menu<AdminMenu.Action> {
         SEE_ALL_ROOMS(2),
         SEE_ALL_RESERVATIONS(3),
         ADD_A_ROOM(4),
-        BACK_TO_MAIN_MENU(5);
+        POPULATE_SAMPLE_DATA(5),
+        BACK_TO_MAIN_MENU(6);
 
         private final int value;
 
@@ -97,6 +99,19 @@ public class AdminMenu extends Menu<AdminMenu.Action> {
                 }while(!finishedAddingRooms);
 
 
+            }
+            case POPULATE_SAMPLE_DATA -> {
+                adminResource.addRoom(new Room("1",1.0,RoomType.SINGLE));
+                adminResource.addRoom(new Room("2",2.0,RoomType.SINGLE));
+                adminResource.addRoom(new Room("3",2.5,RoomType.DOUBLE));
+                adminResource.addRoom(new FreeRoom("4",RoomType.SINGLE));
+                adminResource.addRoom(new FreeRoom("5",RoomType.DOUBLE));
+                try {
+                    adminResource.addCustomer(new Customer("John","Doe","johndoe@gmail.com"));
+                    adminResource.addCustomer(new Customer("Lisa","Smith","lisasmith@gmail.com"));
+                } catch (IllegalAccessException e) {
+                    System.out.println("Failed to add customer: " + e.getMessage());
+                }
             }
             case BACK_TO_MAIN_MENU -> {
             }

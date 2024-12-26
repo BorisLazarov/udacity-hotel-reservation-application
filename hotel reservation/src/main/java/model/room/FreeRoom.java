@@ -16,7 +16,7 @@ public class FreeRoom extends Room {
     }
     @Override
     public String toString() {
-        return "Free Room %s : Type %s".formatted(roomNumber, roomType);
+        return "Free Room %s: Type %s".formatted(roomNumber, roomType);
     }
 
     @Override

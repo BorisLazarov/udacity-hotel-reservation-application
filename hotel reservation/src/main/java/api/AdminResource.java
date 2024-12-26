@@ -32,6 +32,10 @@ public class AdminResource {
         return reservationService.roomNumberAvailable(roomId);
     }
 
+    public void addCustomer(Customer customer){
+        customerService.addCustomer(customer.getEmail(),customer.getFirstName(),customer.getLastName());
+    }
+
     public Collection<IRoom> getAllRooms(){
         return reservationService.getAllRooms();
     }
