@@ -71,32 +71,18 @@ public class MainMenu extends Menu<MainMenu.Action> {
     @Override
     protected void executeAction(Action action) {
         Scanner scanner = new Scanner(System.in);
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        dateFormat.setLenient(false);
         switch (action){
             case FIND_AND_RESERVE_A_ROOM -> {
-                String checkInDateString;
-                Date checkInDate = null;
-                do{
-                    try {
-                        checkInDateString = ScannerInputHandler.getValidStringInput(scanner,"Enter check in date mm/dd/yyyy example 02/01/2020");
-                        checkInDate = dateFormat.parse(checkInDateString);
-                    } catch (ParseException e) {
-                        System.out.println("Invalid date supplied. Please use the format mm/dd/yyyy");
+                Date checkInDate;
+                Date checkOutDate;
+                checkInDate = ScannerInputHandler.getValidDateInput(scanner,"Enter check in date mm/dd/yyyy example 02/01/2020");
+                while(true){
+                    checkOutDate = ScannerInputHandler.getValidDateInput(scanner,"Enter check out date mm/dd/yyyy example 02/01/2020");
+                    if(checkOutDate.after(checkInDate)){
+                        break;
                     }
-                }while(checkInDate == null);
-
-
-                String checkOutDateString;
-                Date checkOutDate = null;
-                do{
-                    try {
-                        checkOutDateString = ScannerInputHandler.getValidStringInput(scanner,"Enter check out date mm/dd/yyyy example 02/01/2020");
-                        checkOutDate = dateFormat.parse(checkOutDateString);
-                    } catch (ParseException e) {
-                        System.out.println("Invalid date supplied. Please use the format mm/dd/yyyy");
-                    }
-                }while(checkOutDate == null);
+                    System.out.println("Check in date cannot be after check out date. Please try again.");
+                }
 
                 Collection<IRoom> availableRooms = hotelResource.findARoom(checkInDate,checkOutDate);
                 if(availableRooms.isEmpty()){

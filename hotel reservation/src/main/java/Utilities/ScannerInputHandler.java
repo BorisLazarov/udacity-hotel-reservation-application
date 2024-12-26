@@ -1,5 +1,7 @@
 package Utilities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ScannerInputHandler {
@@ -86,5 +88,29 @@ public class ScannerInputHandler {
                 System.out.println("Input cannot be empty. Please enter a valid string.");
             }
         }
+    }
+
+    public static Date getValidDateInput(Scanner scanner, String prompt) {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, -1); // Subtract one day from today
+        final Date yesterday = calendar.getTime();
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        dateFormat.setLenient(false);
+        String dateString;
+        Date date;
+        while(true){
+            try {
+                dateString = ScannerInputHandler.getValidStringInput(scanner,prompt);
+                date = dateFormat.parse(dateString);
+                if (date.before(yesterday)){
+                    System.out.println("Date cannot be in the past.");
+                    continue;
+                }
+                break;
+            } catch (ParseException e) {
+                System.out.println("Invalid date supplied. Please use the format mm/dd/yyyy");
+            }
+        }
+        return date;
     }
 }
