@@ -49,7 +49,7 @@ public class ReservationService {
                 if (newReservation.overlapsWith(reservation)){
 
                     if (room.getRoomType().equals(RoomType.SINGLE) || occupiedOnce)
-                        throw new RuntimeException("Reservations overlap: " + reservation.toString() + " and " + newReservation.toString());
+                        throw new RuntimeException("Reservations overlap: " + reservation + " and " + newReservation);
 
                     if(room.getRoomType().equals(RoomType.DOUBLE)){
                         occupiedOnce = true;
