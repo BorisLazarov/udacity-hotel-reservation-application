@@ -1,5 +1,6 @@
 package menu;
 
+import Utilities.ScannerInputHandler;
 import api.AdminResource;
 import model.customer.Customer;
 import model.room.FreeRoom;
@@ -97,8 +98,6 @@ public class AdminMenu extends Menu<AdminMenu.Action> {
                     System.out.println("You are supposed to provide either a number of a double here.");
                 }
                 }while(!finishedAddingRooms);
-
-
             }
             case POPULATE_SAMPLE_DATA -> {
                 adminResource.addRoom(new Room("1",1.0,RoomType.SINGLE));

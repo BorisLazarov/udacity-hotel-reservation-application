@@ -1,5 +1,6 @@
 package service;
 
+import Utilities.EmailFormatChecker;
 import model.customer.Customer;
 
 import java.util.ArrayList;
@@ -43,6 +44,10 @@ public class CustomerService {
 
     public Collection<Customer> getAllCustomers(){
         return reference.customers;
+    }
+
+    public boolean customerEmailAvailable(String email){
+        return getCustomer(email) == null && EmailFormatChecker.isValidEmail(email);
     }
 
 

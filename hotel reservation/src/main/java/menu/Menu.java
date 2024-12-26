@@ -40,6 +40,7 @@ public abstract class Menu<T extends Enum<T>> {
         T userInputAction = null;
         int valueOfLastMenuItem = getIntFromAction(actions.getLast()); //this gives us the int value of the last enum value, which needs to be the Exit/Return to Main menu entry. Discussed more in the while conditional at the bottom of this method.
         do{
+            System.out.println("--- ---- ---- ---");
             System.out.println("Please select an option:");
             printMenuActions();
             try{
@@ -51,14 +52,13 @@ public abstract class Menu<T extends Enum<T>> {
                 }
                 userInputAction = getActionFromInt(userIntInput);
                 executeAction(userInputAction);
-                System.out.println("--- ---- ---- ---");
             } catch (InputMismatchException e){
                 System.out.println("You need to select the number corresponding to the option you want");
                 scanner.nextLine(); //This will remove the invalid input from the scanner.
             }
 
         }while(userInputAction != actions.getLast()); //I'm not a huge fan of this, because it relies on the last item in the enum to be the "Exit/Return to main menu action"
-                                                      //I've allowed myself to do this here, since the enums in questions are only and directly tied to menu items, not DB fields, so it "should be fine" to do this.
+                                                      //I've allowed myself to do this here, since the enums in questions are only and directly tied to menu items, so it "should be fine" to do this.
     }
 }
 

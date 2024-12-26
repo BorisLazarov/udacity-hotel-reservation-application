@@ -1,34 +1,24 @@
-package menu;
+package Utilities;
 
-import java.util.Collection;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ScannerInputHandler {
 
     public static int getValidIntInput(Scanner scanner, String prompt, Collection<Integer> validInputValues) {
-        int result = 0;
-        boolean validInput = false;
-
-        while (!validInput) {
+        int result;
+        while (true) {
             try {
                 System.out.println(prompt);
                 result = Integer.parseInt(scanner.nextLine());
-                if (validInputValues.isEmpty()) {
-                    validInput = true;
+                if (validInputValues.isEmpty() || validInputValues.contains(result)) {
+                    return result;
                 }else{
-                    if (validInputValues.contains(result)){
-                            validInput = true;
-                    }else{
-                        System.out.println("Value must be one of " + validInputValues);
-                    }
+                    System.out.println("Value must be one of " + validInputValues);
                 }
             } catch (InputMismatchException | NumberFormatException ex) {
                 System.out.println("Please enter a valid number.");
             }
         }
-        return result;
     }
 
     public static int getValidIntInput(Scanner scanner, String prompt) {
@@ -56,33 +46,45 @@ public class ScannerInputHandler {
     }
 
     public static String getValidStringInput(Scanner scanner, String prompt, Collection<String> validInputValues) {
-        String result = "";
-        boolean validInput = false;
+        String result;
 
-        while (!validInput) {
+        while (true) {
             System.out.println(prompt);
             result = scanner.nextLine().trim();
 
             if (!result.isEmpty()) {
-                if (validInputValues.isEmpty()) {
-                    validInput = true;
+                if (validInputValues.isEmpty() || validInputValues.contains(result)) {
+                    return result;
                 }else{
-                    if (validInputValues.contains(result)){
-                        validInput = true;
-                    }else{
-                        System.out.println("Value must be one of " + validInputValues);
-                    }
+                    System.out.println("Value must be one of " + validInputValues);
                 }
-
             } else {
                 System.out.println("Input cannot be empty. Please enter a valid string.");
             }
         }
-
-        return result;
     }
 
     public static String getValidStringInput(Scanner scanner, String prompt) {
         return getValidStringInput(scanner,prompt,List.of());
+    }
+
+    public static boolean getValidBooleanYNInput(Scanner scanner, String prompt) {
+        List<String> validInputValues = List.of("y","n");
+        String result;
+
+        while (true) {
+            System.out.println(prompt);
+            result = scanner.nextLine().trim().toLowerCase();
+
+            if (!result.isEmpty()) {
+                if (validInputValues.contains(result)) {
+                    return result.equals("y");
+                }else{
+                    System.out.println("Value must be one of " + validInputValues);
+                }
+            } else {
+                System.out.println("Input cannot be empty. Please enter a valid string.");
+            }
+        }
     }
 }

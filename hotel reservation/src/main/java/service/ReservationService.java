@@ -64,33 +64,13 @@ public class ReservationService {
 
     public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate){
         Set<IRoom> availableRooms = new HashSet<>(reference.rooms);
-        Set<IRoom> alternativeSuggestionsRooms = new HashSet<>(reference.rooms);
-
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.setTime(checkInDate);
-        calendar.add(Calendar.DAY_OF_MONTH, 7);
-        Date alternativeCheckInDate = calendar.getTime();
-
-        calendar.setTime(checkOutDate);
-        calendar.add(Calendar.DAY_OF_MONTH, 7);
-        Date alternativeCheckOutDate = calendar.getTime();
-
-
 
         for (Reservation reservation : reference.reservations){
             if (reservation.overlapsWith(checkInDate,checkOutDate)){
                 availableRooms.remove(reservation.getRoom());
             }
-            if (reservation.overlapsWith(alternativeCheckInDate,alternativeCheckOutDate)){
-                alternativeSuggestionsRooms.remove(reservation.getRoom());
-            }
-
         }
-        if(!availableRooms.isEmpty()){
             return availableRooms;
-        }
-        return alternativeSuggestionsRooms;
     }
 
     public Collection<Reservation> getCustomersReservation(Customer customer){

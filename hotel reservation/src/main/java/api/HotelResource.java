@@ -33,6 +33,10 @@ public class HotelResource {
         customerService.addCustomer(email,firstName,lastName);
     }
 
+    public boolean customerEmailAvailable(String email){
+        return customerService.customerEmailAvailable(email);
+    }
+
     public IRoom getRoom(String roomNumber){
         return reservationService.getARoom(roomNumber);
     }

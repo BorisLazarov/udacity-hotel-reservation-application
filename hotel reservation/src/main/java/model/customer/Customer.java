@@ -1,5 +1,7 @@
 package model.customer;
 
+import Utilities.EmailFormatChecker;
+
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,12 +15,8 @@ public class Customer {
     public Customer(String firstName, String lastName, String email) throws IllegalAccessException {
         this.firstName = firstName;
         this.lastName = lastName;
-        //I've changed this regex from the one in the course,
-        // so it requires a dot after the @.
-        String emailRegex = "^(.+)@(.+)\\.(.+)$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        Matcher matcher = pattern.matcher(email);
-        if (!matcher.matches()) {
+
+        if (!EmailFormatChecker.isValidEmail(email)) {
             throw new IllegalAccessException("Invalid email provided. Accepted format is name@domain.com");
         } else {
             this.email = email;
