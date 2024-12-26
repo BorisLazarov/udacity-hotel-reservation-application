@@ -47,7 +47,8 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Customer: " + customer.toString() + " - Room: " + room.toString() + " - CheckInDate: " + checkInDate.toString() +  " - CheckOutDate: " + checkOutDate.toString();
+        return "Customer: %s - Room: %s - CheckInDate: %s - CheckOutDate: %s"
+                .formatted(customer.toString(), room.toString(), checkInDate.toString(), checkOutDate.toString());
     }
 
     @Override

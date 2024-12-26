@@ -24,14 +24,6 @@ public class AdminResource {
         return reference;
     }
 
-    public Customer getCustomer(String email){
-        return customerService.getCustomer(email);
-    }
-
-    public void addRooms(List<IRoom> rooms){
-        rooms.forEach(reservationService::addRoom);
-    }
-
     public void addRoom(IRoom room){
         reservationService.addRoom(room);
     }

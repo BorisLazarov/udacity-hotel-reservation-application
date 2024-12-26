@@ -14,8 +14,7 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
         //I've changed this regex from the one in the course,
-        // so it requires a dot after the @. I was also considering making it necessary to have .com,
-        // but settled for just the dot
+        // so it requires a dot after the @.
         String emailRegex = "^(.+)@(.+)\\.(.+)$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
@@ -40,7 +39,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer: " + firstName + " " + lastName + " - Email: " + email;
+        return "Customer: %s %s - Email: %s".formatted(firstName, lastName, email);
     }
 
 
